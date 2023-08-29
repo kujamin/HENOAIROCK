@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chat">
+
+<select id="responseList" parameterType="chatRes" resultType="chatRes">
+  SELECT
+    rm.chat_res_seq,
+    rm.chat_seq,
+    rm.feeling,
+    rm.chat_res_dt,
+    rm.chat_res_contents,
+    rm.hurt,
+    rm.happy,
+    rm.embarrassed,
+    rm.anger,
+    rm.unrest,
+    rm.sad,
+    rm.chat_contents_id,
+    rm.music_id,
+    m.*
+	FROM RESPOND_MSG rm
+	LEFT JOIN music m ON rm.music_id = m.music_id
+	WHERE rm.CHAT_SEQ = #{chatSeq}
+	ORDER BY rm.chat_res_dt ASC
+</select>
+
+<select id="responseSelect" parameterType="chatRes">
+  SELECT
+    *
+  FROM RESPOND_MSG
+  WHERE chat_res_seq = #{chatResSeq} AND CHAT_SEQ = #{chatSeq}
+  ORDER BY CHAT_CONTENTS_ID
+</select>
+
+<insert id="responseInsert" parameterType="chatRes">
+<selectKey keyProperty="chatResSeq" resultType="string" order="BEFORE">
+  SELECT CHAT_RES_SEQ.NEXTVAL FROM DUAL
+</selectKey>
+  INSERT INTO RESPOND_MSG (
+    chat_res_seq,
+    chat_seq,
+    chat_res_dt,
+    chat_res_contents,
+    hurt,
+    happy,
+    embarrassed,
+    anger,
+    unrest,
+    sad,
+    feeling,
+    chat_contents_id,
+    music_id
+  ) VALUES (
+    #{chatResSeq},
+    #{chatSeq},
+    SYSDATE,
+    #{chatResContents},
+    #{hurt},
+    #{happy},
+    #{embarrassed},
+    #{anger},
+    #{unrest},
+    #{sad},
+    #{feeling},
+    #{chatContentsId},
+    #{musicId}
+    
+  )
+</insert>
+
+
+
+<insert id="start" parameterType="chat">
+<selectKey keyProperty="chatSeq" resultType="string" order="BEFORE">
+  SELECT CHAT_SEQ.NEXTVAL FROM DUAL
+</selectKey>
+  INSERT INTO MSG (
+    chat_seq,
+    user_id,
+    chat_div
+  ) VALUES (
+    #{chatSeq},
+    #{userId},
+    #{chatDiv}
+  )
+
+</insert>
+
+<insert id="message" parameterType="chat">
+INSERT INTO MSG_DETAIL (
+<selectKey keyProperty="chatContentsId" resultType="string" order="BEFORE">
+  SELECT CHAT_CONTENTS_ID.NEXTVAL FROM DUAL
+</selectKey>
+  chat_seq,
+  chat_div,
+  chat_dt,
+  chat_contents,
+  chat_contents_id
+) VALUES (
+  #{chatSeq},
+  #{chatDiv},
+  SYSDATE,
+  #{chatContents},
+  #{chatContentsId}
+)
+</insert>
+
+<select id="selectMsgList" parameterType="chatDetail" resultType="chatDetail">
+    SELECT
+		    chat_seq,
+		    DECODE( TO_CHAR(chat_dt,'YYYYMMDD'),TO_CHAR(sysdate,'YYYYMMDD')
+                      ,TO_CHAR(chat_dt,'HH24:MI')
+                      ,TO_CHAR(chat_dt,'YYYY/MM/DD') )chat_dt,
+		    chat_contents
+    FROM (
+    SELECT
+        MD.chat_seq,
+        MD.chat_dt,
+        MD.chat_contents,
+        ROW_NUMBER() OVER(PARTITION BY MD.chat_seq ORDER BY MD.chat_dt) AS row_num
+    FROM
+        MSG_detail MD
+    JOIN MSG M ON MD.chat_seq = M.chat_seq
+    WHERE
+        M.USER_ID = #{userId}
+		) numbered
+		WHERE row_num = 1
+		ORDER BY chat_dt desc
+</select>
+
+<select id="contentSelect" parameterType="chat" resultType="chatDetail">
+  SELECT
+  *
+  FROM MSG_DETAIL
+  WHERE CHAT_SEQ = #{chatSeq}
+</select>
+
+
+</mapper>
+

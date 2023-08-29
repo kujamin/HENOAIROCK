@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Member">
+
+  <!-- 어드민 -->
+	<select id="getAllUsers" resultType="member">
+		SELECT * FROM member
+	</select>
+
+	<select id="getUserById" parameterType="String"
+		resultType="member">
+		select * from member where user_id=#{userId}
+	</select>
+
+	<update id="deleteUser" parameterType="String">
+		DELETE FROM member WHERE user_id = #{userId}
+	</update>
+
+	<select id="adminLogin" parameterType="member"
+		resultType="member">
+		select * from member where user_id=#{userId} and password=#{password} and
+		is_admin = 1
+	</select>
+  <!-- // 어드민 -->
+
+	<!-- 로그인시 DB조회 -->
+	<select id="login" parameterType="member" resultType="member">
+		select *
+		from member where user_id=#{userId} and password=#{password}
+	</select>
+
+		<!-- 회원가입 DB -->
+	<insert id="save" parameterType="member">
+		INSERT INTO MEMBER (user_id, profile_img, name, password, nickname, birth,
+		member_dt)
+		VALUES (#{userId}, '/resources/images/KaKao.png', #{name}, #{password},'새나라어린이', #{birth},
+		SYSDATE)
+	</insert>
+
+	<!-- 아이디 중복 체크 여부 -->
+	<select id="idChk" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM member
+		WHERE user_id = #{userId}
+	</select>
+
+	<!-- 비밀번호 변경 -->
+	<update id="find" parameterType="member">
+		UPDATE MEMBER SET PASSWORD = #{password} WHERE user_id = #{userId}
+	</update>
+
+</mapper>

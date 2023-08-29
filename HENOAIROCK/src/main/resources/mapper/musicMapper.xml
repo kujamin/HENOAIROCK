@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Music">
+
+<!-- 검색조건 -->
+<sql id="searchCondition">
+   <choose>
+    <when test=" '' != searchWord and '10' == searchDiv">
+       AND title LIKE '%' || #{searchWord} || '%'
+    </when>
+    <when test=" '' != searchWord and '20' == searchDiv">
+       AND artist LIKE '%' || #{searchWord} || '%'
+    </when>
+    <when test=" '' != searchWord and '30' == searchDiv">
+       AND lyrics LIKE '%' || #{searchWord} || '%'
+    </when>
+   </choose>
+</sql>
+
+<sql id="searchGenre">
+   <choose>
+    <when test=" '' != genre and '발라드' == genre">
+       AND genre LIKE '%발라드%'
+    </when>
+    <when test=" '' != genre and '댄스' == genre">
+       AND genre LIKE '%댄스%'
+    </when>
+    <when test=" '' != genre and '랩/힙합' == genre">
+       AND genre LIKE '%힙합%'
+    </when>
+    <when test=" '' != genre and 'Soul' == genre">
+       AND genre LIKE '%Soul%'
+    </when>
+    <when test=" '' != genre and '인디음악' == genre">
+       AND genre LIKE '%인디음악%'
+    </when>
+    <when test=" '' != genre and '록/메탈' == genre">
+       AND genre LIKE '%록%'
+    </when>
+    <when test=" '' != genre and '트로트' == genre">
+       AND genre LIKE '%트로트%'
+    </when>
+    <when test=" '' != genre and '포크/블루스' == genre">
+       AND genre LIKE '%포크%'
+    </when>
+   </choose>
+</sql>
+
+<sql id="searchFeeling">
+   <choose>
+    <when test=' "" != feeling and "설렘" == feeling'>
+       AND feeling LIKE '%설렘%'
+    </when>
+    <when test=' "" != feeling and "슬픔" == feeling'>
+       AND feeling LIKE '%슬픔%'
+    </when>
+    <when test=' "" != feeling and "편안" == feeling'>
+       AND feeling LIKE '%편안%'
+    </when>
+    <when test=' "" != feeling and "당황" == feeling'>
+       AND feeling LIKE '%편안%'
+    </when>
+    <when test=' "" != feeling and "불안" == feeling'>
+       AND feeling LIKE '%불안%'
+    </when>
+    <when test=' "" != feeling and "화" == feeling'>
+       AND feeling LIKE '%화%'
+    </when>
+    <when test=' "" != feeling and "분노" == feeling'>
+       AND feeling LIKE '%화%'
+    </when>
+    <when test=' "" != feeling and "신남" == feeling'>
+       AND feeling LIKE '%신남%'
+    </when>
+    <when test=' "" != feeling and "자신감" == feeling'>
+       AND feeling LIKE '%자신감%'
+    </when>
+    <when test=' "" != feeling and "기쁨" == feeling'>
+       AND feeling LIKE '%설렘%' OR feeling LIKE '%신남%'
+    </when>
+    <when test=' "" != feeling and "상처" == feeling'>
+       AND feeling LIKE '%편안%'
+    </when>
+   </choose>
+</sql>
+<select id="chatRec" parameterType="music" resultType="music">
+  SELECT * FROM (
+    SELECT * FROM music 
+    WHERE 1 = 1
+    <include refid="searchFeeling"></include>
+    ORDER BY DBMS_RANDOM.VALUE
+) WHERE ROWNUM = 1
+</select>
+
+<select id="genre" parameterType="music" resultType="music">
+  SELECT A.*,B.*
+    FROM (
+        SELECT TT1.rnum as num,
+               TT1.music_id,
+               TT1.title,
+               TT1.album,
+               TT1.artist,
+               TT1.lyrics,
+               TT1.genre,
+               TT1.feeling,
+               TT1.album_path,
+               TT1.yt_link,
+               TT1.public_dt,
+               TT1.like_cnt
+        FROM (
+            SELECT ROWNUM as rnum, t1.*
+            FROM (
+                SELECT *
+                FROM music
+                WHERE 1 = 1
+                <include refid="searchGenre"></include>
+            )t1
+            <![CDATA[ WHERE ROWNUM <= #{pageSize} * (#{pageNo}-1)+#{pageSize} ]]>
+        )TT1
+        <![CDATA[ WHERE rnum >=#{pageSize} * (#{pageNo}-1)+ 1 ]]>
+    )A
+    CROSS JOIN
+    (
+    SELECT COUNT(music_id) totalCnt
+    FROM music
+    WHERE 1 = 1
+    <include refid="searchGenre"></include>
+    )B
+    ORDER BY like_cnt DESC
+</select>
+
+<select id="feeling" parameterType="music" resultType="music">
+  SELECT A.*,B.*
+    FROM (
+        SELECT TT1.rnum as num,
+               TT1.music_id,
+               TT1.title,
+               TT1.album,
+               TT1.artist,
+               TT1.lyrics,
+               TT1.genre,
+               TT1.feeling,
+               TT1.album_path,
+               TT1.yt_link,
+               TT1.public_dt,
+               TT1.like_cnt
+        FROM (
+            SELECT ROWNUM as rnum, t1.*
+            FROM (
+                SELECT *
+                FROM music
+                WHERE 1 = 1
+                <include refid="searchFeeling"></include>
+            )t1
+            <![CDATA[ WHERE ROWNUM <= #{pageSize} * (#{pageNo}-1)+#{pageSize} ]]>
+        )TT1
+        <![CDATA[ WHERE rnum >=#{pageSize} * (#{pageNo}-1)+ 1 ]]>
+    )A
+    CROSS JOIN
+    (
+    SELECT COUNT(music_id) totalCnt
+    FROM music
+    WHERE 1 = 1
+    <include refid="searchFeeling"></include>
+    )B
+    ORDER BY like_cnt DESC
+</select>
+
+
+
+
+<select id="doRetrieve" parameterType="com.heno.airock.cmn.DTO" resultType="music">
+   SELECT A.*,B.*
+    FROM (
+        SELECT TT1.rnum as num,
+               TT1.music_id,
+               TT1.title,
+               TT1.album,
+               TT1.artist,
+               TT1.lyrics,
+               TT1.genre,
+               TT1.feeling,
+               TT1.album_path,
+               TT1.yt_link,
+               TT1.public_dt,
+               TT1.like_cnt
+        FROM (
+            SELECT ROWNUM as rnum, t1.*
+            FROM (
+                SELECT *
+                FROM music
+                WHERE 1 = 1
+                <include refid="searchCondition"></include>
+                <include refid="searchGenre"></include>
+                <include refid="searchFeeling"></include>
+                ORDER BY like_cnt DESC, music_id
+            )t1
+            <![CDATA[ WHERE ROWNUM <= #{pageSize} * (#{pageNo}-1)+#{pageSize} ]]>
+            ORDER BY like_cnt DESC
+        )TT1
+        <![CDATA[ WHERE rnum >=#{pageSize} * (#{pageNo}-1)+ 1 ]]>
+    )A
+    CROSS JOIN
+    (
+    SELECT COUNT(music_id) totalCnt
+    FROM music
+    WHERE 1 = 1
+    <include refid="searchCondition"></include>
+    <include refid="searchGenre"></include>
+    <include refid="searchFeeling"></include>
+    )B
+    ORDER BY like_cnt DESC
+</select>
+
+<select id="selectOne" parameterType="music" resultType="music">
+    SELECT
+      music_id,
+      title,
+      album,
+      artist,
+      lyrics,
+      genre,
+      feeling,
+      album_path,
+      embed_link,
+      public_dt,
+      like_cnt
+    FROM MUSIC
+    WHERE music_id = #{musicId} 
+</select>
+
+<insert id="save" parameterType="music">
+    INSERT INTO MUSIC (
+	     music_id,
+	     title,
+	     album,
+	     artist,
+	     lyrics,
+	     genre,
+	     feeling,
+	     album_path,
+	     yt_link,
+	     public_dt,
+	     like_cnt  
+    ) VALUES (
+	    #{musicId},
+	    #{title},
+	    #{album},
+	    #{artist},
+	    #{lyrics},
+	    #{genre},
+	    #{feeling},
+	    #{albumPath},
+	    #{ytLink},
+	    #{publicDt},
+	    0
+    )
+</insert>
+
+<delete id="delete" parameterType="music">
+    DELETE FROM MUSIC 
+    WHERE music_id = #{musicId}   
+</delete>
+
+<insert id="addMusic" parameterType="music">
+INSERT INTO music_like_cnt (
+    like_seq,
+    music_id,
+    user_id
+) VALUES (
+    #{likeSeq},
+    #{musicId},
+    #{userId}
+)
+</insert>
+
+<update id="musicLikeCnt" parameterType="music">
+    <![CDATA[
+    UPDATE music
+      SET like_cnt = NVL(like_cnt,0) + 1
+    WHERE music_id = #{musicId}
+    AND user_id <> #{userId}
+    ]]> 
+</update>
+
+</mapper>

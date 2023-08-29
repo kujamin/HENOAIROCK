@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>마이플레이리스트</title>
+    <link rel="stylesheet" type="text/css" href="/resources/css/Mypage.css">
+    </head>
+
+<body>
+
+</br>
+  <div class="page-header">
+    <h2 style="text-align: center;">&lt;마이페이지&gt;</h2>
+  </div>
+
+
+    <!-- 제목 및 닉네임 사진 변경  -->
+    <div id="musicList" class="mw">
+ 		<div class="meta_info">
+	    	<img class="meta_info_img" alt=""
+	        	src="https://images.unsplash.com/photo-1528301721190-186c3bd85418?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80">
+	    <div class="meta_info_text absolute p-16">
+   		<h1 style="text-align: center;">&lt;마이페이지&gt;</h1>
+        
+        <p>13곡 · 01시간 01분</p>
+
+    	<!-- 수정하기 버튼 추가 -->
+        <a href="/mypage/list_reg" class="btn-basic btn-edit" onclick="handleListAddClick()" style="font-family: 'Cafe24SsurroundAir';">리스트 등록</a>
+
+
+        <!-- 노래 모음 -->
+ 		<div class="additional-content">
+            <button class="fs" style="border: none;">
+                <img class="horizen_mmimg" src="https://api1.indj.club/api/v3/channel/image/profile/profile_51532_340788244122.jpg" alt="이미지">
+                <div id="meta_info" class="ell">
+                    <p class="meta_info_title ell">일해 김형준</p>
+                    <br/>
+                </div>
+            </button>
+        </div>  
+        
+   </div>
+ </div>
+        <div class="tab_menu">
+            <ul class="tab_list">
+            
+                <li class="is_on"><a href="#tab1" class="tab_btn">좋아요</a></li>
+                <li><a href="#tab2" class="tab_btn">앨범아트</a></li>
+            </ul>
+        </div>
+
+
+        <!-- 좋아요 목록 -->
+        <div id="tab1" class="cont_area cont_active">
+            <div class="music_list p-16">
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/1142651" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">잘 된 일이야</p>
+                            <span class="meta_info_desc ell">나비</span>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/10765633" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">좋은 사람</p>
+                            <span class="meta_info_desc ell">박효신</span>
+                        </div>
+                    </button>
+                </div>
+
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/10237420" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">그때가 좋았어</p>
+                            <span class="meta_info_desc ell">케이시 (Kassy)</span>
+                        </div>
+                    </button>
+                </div>
+
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station" src="https://api1.indj.club/api/v3/album/image/COVERS_90/29678"
+                            alt="이미지" style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">고백</p>
+                            <span class="meta_info_desc ell">델리스파이스</span>
+                        </div>
+                    </button>
+                </div>
+
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/10019694" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">난 당신에게 어어떤 사람일까요</p>
+                            <span class="meta_info_desc ell">스무살</span>
+                        </div>
+                    </button>
+                </div>
+
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/10152984" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">어른</p>
+                            <span class="meta_info_desc ell">Sondia</span>
+                        </div>
+                    </button>
+                </div>
+
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/10283617" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">좋아 (JOAH)</p>
+                            <span class="meta_info_desc ell">10CM</span>
+                        </div>
+                    </button>
+                </div>
+
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/10533106" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">Love Letter</p>
+                            <span class="meta_info_desc ell">볼빨간 사춘기</span>
+                        </div>
+                    </button>
+                </div>
+
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/2123584" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">Trellic</p>
+                            <span class="meta_info_desc ell">Baxter Dury</span>
+                        </div>
+                    </button>
+                </div>
+
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/10439508" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">내 눈물 모아</p>
+                            <span class="meta_info_desc ell">휘인(Whee In)</span>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/10134779" alt="이미지"
+                    horizen_station        style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">이별 뒷면</p>
+                            <span class="meta_info_desc ell">권진아</span>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/10631122" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">비와 당신</p>
+                            <span class="meta_info_desc ell">이무진</span>
+                        </div>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <!--  -----------------------------------중복-------------------------------------------------------------------------- -->
+
+        <!-- 앨범 목록 -->
+
+
+        <div id="tab2" class="cont_area">
+            <div class="music_list p-16">
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/10374783" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">다시 난, 여기</p>
+                            <span class="meta_info_desc ell">백예린 (Yerin Baek)</span>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/1142651" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">잘 된 일이야</p>
+                            <span class="meta_info_desc ell">나비</span>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/10765633" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">좋은 사람</p>
+                            <span class="meta_info_desc ell">박효신</span>
+                        </div>
+                    </button>
+                </div>
+
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/10237420" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">그때가 좋았어</p>
+                            <span class="meta_info_desc ell">케이시 (Kassy)</span>
+                        </div>
+                    </button>
+                </div>
+
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station" src="https://api1.indj.club/api/v3/album/image/COVERS_90/29678"
+                            alt="이미지" style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">고백</p>
+                            <span class="meta_info_desc ell">델리스파이스</span>
+                        </div>
+                    </button>
+                </div>
+
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/10019694" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">난 당신에게 어떤 사람일까요</p>
+                            <span class="meta_info_desc ell">스무살</span>
+                        </div>
+                    </button>
+                </div>
+
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/10152984" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">어른</p>
+                            <span class="meta_info_desc ell">Sondia</span>
+                        </div>
+                    </button>
+                </div>
+
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/10283617" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">좋아 (JOAH)</p>
+                            <span class="meta_info_desc ell">10CM</span>
+                        </div>
+                    </button>
+                </div>
+
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/10533106" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">Love Letter</p>
+                            <span class="meta_info_desc ell">볼빨간 사춘기</span>
+                        </div>
+                    </button>
+                </div>
+
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/2123584" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">Trellic</p>
+                            <span class="meta_info_desc ell">Baxter Dury</span>
+                        </div>
+                    </button>
+                </div>
+
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/10439508" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">내 눈물 모아</p>
+                            <span class="meta_info_desc ell">휘인(Whee In)</span>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/10134779" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">이별 뒷면</p>
+                            <span class="meta_info_desc ell">권진아</span>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/10631122" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">비와 당신</p>
+                            <span class="meta_info_desc ell">이무진</span>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="horizen_station cursor">
+                    <button class="fs">
+                        <img class="horizen_img station"
+                            src="https://api1.indj.club/api/v3/album/image/COVERS_90/10374783" alt="이미지"
+                            style="width: 80px;">
+                        <div id="meta_info" class="ell">
+                            <p class="meta_info_title ell">다시 난, 여기</p>
+                            <span class="meta_info_desc ell">백예린 (Yerin Baek)</span>
+                        </div>
+                    </button>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        const tabList = document.querySelectorAll('.tab_menu .tab_list li');
+        const contents = document.querySelectorAll('.cont_area');
+        // 초기에 첫 번째 탭 내용을 활성화
+        contents[0].classList.add('cont_active');
+        for (var i = 0; i < tabList.length; i++) {
+            tabList[i].querySelector('.tab_btn').addEventListener('click', function (e) {
+                e.preventDefault();
+                for (var j = 0; j < tabList.length; j++) {
+                    tabList[j].classList.remove('is_on');
+                    contents[j].classList.remove('cont_active');
+                }
+                this.parentNode.classList.add('is_on');
+                const activeContId = this.getAttribute('href');
+                document.querySelector(activeContId).classList.add('cont_active');
+            });
+        }
+    </script>
+</body>
+
+</html>

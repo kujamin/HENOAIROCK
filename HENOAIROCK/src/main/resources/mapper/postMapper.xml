@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Post">
+  
+  <!-- 검색조건 -->
+  <sql id="searchCondition">
+     <choose>
+      <when test=" '' != searchWord  and '10' == searchDiv  ">
+         AND post_title  LIKE #{searchWord} || '%'
+      </when>
+      <when test=" '' != searchWord  and '20' == searchDiv  ">
+         AND post_contents  LIKE #{searchWord} || '%'
+      </when>
+     </choose>
+  </sql>
+
+  <!-- 게시글 목록조회 -->
+  <select id='select' parameterType="com.heno.airock.cmn.DTO" resultType="post">
+    SELECT A.*,B.*, M.*
+    FROM (
+        SELECT TT1.rnum as num,
+               TT1.post_title,
+               TT1.post_div,
+               TT1.read_cnt,
+               TT1.post_contents,
+               DECODE( TO_CHAR(TT1.post_dt,'YYYYMMDD'),TO_CHAR(sysdate,'YYYYMMDD')
+                      ,TO_CHAR(TT1.post_dt,'HH24:MI')
+                      ,TO_CHAR(TT1.post_dt,'YYYY/MM/DD') )post_dt,
+               --당일 등록이면 : 16:26 그렇치 않으면 2023/06/28
+               DECODE( TO_CHAR(TT1.update_dt,'YYYYMMDD'),TO_CHAR(sysdate,'YYYYMMDD')
+                      ,TO_CHAR(TT1.update_dt,'HH24:MI')
+                      ,TO_CHAR(TT1.update_dt,'YYYY/MM/DD') )update_dt,
+               TT1.user_id,
+               TT1.post_seq,
+               TT1.music_id
+        FROM (
+            SELECT ROWNUM as rnum, t1.*
+            FROM (
+                SELECT *
+                FROM posts
+                WHERE post_div = #{postDiv}
+                <include refid="searchCondition"></include>
+                ORDER BY post_dt DESC, post_seq
+            )t1
+          <![CDATA[     WHERE ROWNUM <= #{pageSize} * (#{pageNo}-1)+#{pageSize}   ]]>
+        )TT1
+        --WHERE rnum >=1
+       <![CDATA[   WHERE rnum >=#{pageSize} * (#{pageNo}-1)+ 1 ]]>
+    )A
+    CROSS JOIN
+    (
+    SELECT COUNT(post_seq) totalCnt
+    FROM posts
+    WHERE post_div = #{postDiv}
+    <include refid="searchCondition"></include>
+    )B
+    LEFT JOIN
+    music M ON A.music_id = M.music_id
+  </select>
+  
+  <select id="selectOne" parameterType="post" resultType="post">
+    SELECT
+			  p.post_seq,
+			  p.user_id,
+			  p.post_title,
+			  p.post_contents,
+			  p.read_cnt,
+			  p.post_div,
+			  DECODE( TO_CHAR(p.post_dt,'YYYYMMDD'),TO_CHAR(sysdate,'YYYYMMDD')
+                      ,TO_CHAR(p.post_dt,'HH24:MI')
+                      ,TO_CHAR(p.post_dt,'YYYY/MM/DD') )post_dt,
+               --당일 등록이면 : 16:26 그렇치 않으면 2023/06/28
+               DECODE( TO_CHAR(p.update_dt,'YYYYMMDD'),TO_CHAR(sysdate,'YYYYMMDD')
+                      ,TO_CHAR(p.update_dt,'HH24:MI')
+                      ,TO_CHAR(p.update_dt,'YYYY/MM/DD') )update_dt,
+			  p.music_id,
+			  m.title,
+			  m.artist,
+			  m.album_path 
+		FROM posts p
+		LEFT JOIN music m ON p.music_id = m.music_id
+		WHERE p.post_seq = #{postSeq}
+  </select>
+  
+  <update id="update" parameterType="post">
+    UPDATE posts
+    SET post_title = #{postTitle},
+        post_contents = #{postContents},
+        update_dt = SYSDATE,
+        user_id = #{userId},
+        music_id = #{musicId}
+    WHERE post_seq = #{postSeq}
+  </update>
+  
+  
+  <insert id='save' parameterType="post">
+  <selectKey keyProperty="postSeq" resultType="string" order="BEFORE">
+         SELECT POST_SEQ.NEXTVAL FROM DUAL
+  </selectKey>
+   INSERT INTO posts (
+        post_seq,
+        user_id,
+        post_title,
+        post_contents,
+        post_div,
+        post_dt,
+        music_id
+    ) VALUES (
+        #{postSeq}, 
+        #{userId}, 
+        #{postTitle}, 
+        #{postContents},
+        10,
+        SYSDATE,
+        #{musicId}
+    )
+  </insert>
+  <delete id="delete" parameterType="post">
+        DELETE FROM posts 
+        WHERE post_seq = #{postSeq} AND user_id = #{userId}
+  </delete>
+  
+  <delete id="adminDelete" parameterType="post">
+        DELETE FROM posts 
+        WHERE post_seq = #{postSeq}
+  </delete>
+  
+  
+  <update id="updateReadCnt" parameterType="post">
+    <![CDATA[
+    UPDATE posts
+      SET read_cnt = NVL(read_cnt,0) + 1
+    WHERE post_seq = #{postSeq}
+    AND user_id <> #{userId}
+    ]]> 
+  </update>
+  
+ 
+  
+
+</mapper>

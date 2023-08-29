@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+body {
+    color: rgb(35, 35, 35);
+    text-align: center;
+    font-family: 'Jua', sans-serif;
+}
+h1 {
+    font-weight: lighter;
+    background-color: #808080;
+    width: 291px;
+    padding: 10px;
+    margin: 20px auto;
+}
+img {
+  width: 500px;
+  margin: 10px auto;
+  display: block;
+  margin-left: calc(55% - 250px); /* Half of the image width */
+}
+.music {
+    width: 265px;
+    margin: 10px auto;
+}
+summary {
+    background-color: #c0c0c0;
+    padding: 5px;
+    margin: 10px;
+    cursor: pointer;
+    list-style: none;
+}
+summary::before{
+    content: url(./music.png);
+}
+details > summary::-webkit-details-marker {
+    display: none;
+}
+p {
+    margin: 13px auto;
+}
+a:link { color: rgb(35, 35, 35); text-decoration: none;}
+a:visited { color: rgb(35, 35, 35); text-decoration: none;}
+a:hover { color: rgb(35, 35, 35); text-decoration: none;}
+a:active { color: rgb(35, 35, 35); text-decoration: none;}

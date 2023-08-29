@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>LIST</title>
+<link rel="stylesheet" type="text/css" href="/resources/css/LIST.css">
+</head>
+<body>
+<div id="musicList" class="mw">
+ <div class="meta_info">
+    <img class="meta_info_img" alt=""
+        src="https://images.unsplash.com/photo-1528301721190-186c3bd85418?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80">
+    <div class="meta_info_text absolute p-16">
+   		<h1>한강에서 산책 </h1>
+        
+        <p>13곡 · 01시간 01분</p>
+
+    	<!-- 수정하기 버튼 추가 -->
+        <button class="btn-basic btn-edit">수정하기</button>
+
+
+        <!-- 노래 모음 -->
+ 		<div class="additional-content">
+            <button class="fs" style="border: none;">
+                <img class="horizen_mmimg" src="https://api1.indj.club/api/v3/channel/image/profile/profile_51532_340788244122.jpg" alt="이미지">
+                <div id="meta_info" class="ell">
+                    <p class="meta_info_title ell">일해 김형준</p>
+                </div>
+            </button>
+        </div>  
+   </div>
+ </div>
+
+
+
+
+
+
+<table class="list-wrap">
+	<thead>
+		<tr>
+			<th scope="col" class="hd-check">선택</th>
+			<th scope="col" class="hd-album">앨범이미지</th>
+			<th scope="col" class="hd-info">가수</th>
+			<th scope="col" class="hd-btns">곡명</th>
+			<th scope="col" class="hd-btns">장르</th>
+			<th scope="col" class="hd-btns">감정</th>
+			<th scope="col" class="hd-btns">뮤비</th>
+
+		</tr>
+	</thead>
+
+	<tbody>
+	
+	  <tr class="list">
+		<!-- 선택  -->
+          <td class="check"><input type="checkbox" class="select-check" title="Super Shy"></td>
+
+          <!-- 앨범 이미지  -->
+          <td><a href="#" class="cover" onclick="fnViewAlbumLayer('84019740');return false;">
+          	<span class="mask"></span>
+          		<img src="//image.genie.co.kr/Y/IMAGE/IMG_ALBUM/084/019/740/84019740_1688692234715_1_140x140.JPG/dims/resize/Q_80,0" onerror="this.src='//image.genie.co.kr/imageg/web/common/blank_68.gif';" alt="NewJeans 2nd EP 'Get Up'"></a>
+          </td>
+          
+          <!-- 가수  -->
+          <td class="link"><a href="#" class="btn-basic btn-info">New Jeans</a></td>
+          
+          <!-- 곡명  -->
+          <td class="info">   
+              <a href="#" class="title ellipsis" title="재생">Super Shy</a>
+          </td>
+          
+          <!-- 장르  -->   
+          <td class="btns"><a href="#" class="btn-basic btn-listen" title="재생">인디</a></td>
+          
+          <!-- 감정  -->   
+          <td class="btns"><a href="#" class="btn-basic btn-listen" title="재생">신남</a></td>
+          <!-- 뮤비 -->
+          <td class="btns">
+              <div class="toggle-button-box lyr-mv" id="list-mv_102563175">
+              	  <a href="#" class="btn btn-basic btn-mv" title="뮤비">YouTube</a>
+              </div>
+          </td>
+      </tr>
+
+	
+	
+	
+	
+	  <tr class="list">
+		<!-- 선택  -->
+          <td class="check"><input type="checkbox" class="select-check" title="Seven"></td>
+
+          <!-- 앨범 이미지  -->
+          <td><a href="#" class="cover" onclick="fnViewAlbumLayer('84019740');return false;">
+          	<span class="mask"></span>
+          		<img src="//image.genie.co.kr/Y/IMAGE/IMG_ALBUM/084/048/666/84048666_1689299278760_1_140x140.JPG/dims/resize/Q_80,0" onerror="this.src='//image.genie.co.kr/imageg/web/common/blank_68.gif';" alt="Seven (Clean Ver.)">
+          </td>
+          
+          <!-- 가수  -->
+          <td class="link"><a href="#" class="btn-basic btn-info">정국</a></td>
+          
+          <!-- 제목  -->
+          <td class="info">   
+              <a href="#" class="title ellipsis" title="재생">Seven(Feat.Latto)</a>
+          </td>
+          
+          <!-- 장르  -->   
+          <td class="btns"><a href="#" class="btn-basic btn-listen" title="재생">인디</a></td>
+          
+          <!-- 감정  -->   
+          <td class="btns"><a href="#" class="btn-basic btn-listen" title="재생">설렘</a></td>
+          <!-- 뮤비 -->
+          <td class="btns">
+              <div class="toggle-button-box lyr-mv" id="list-mv_102563175">
+              	  <a href="#" class="btn btn-basic btn-mv" title="뮤비">YouTube</a>
+              </div>
+          </td>
+      </tr>
+	</tbody>
+	
+<!-- 	<div class="button-container">
+    	<button class="btn-basic btn-add">추가하기</button>
+    	<button class="btn-basic btn-reset">선택 초기화</button>
+	</div> -->
+	
+</table>
+
+</div>
+</body>
+</html>

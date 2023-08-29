@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+.truncate-text {
+  white-space: nowrap;       /* 줄바꿈 금지 */
+  overflow: hidden;          /* 내용 넘치는 부분 숨김 */
+  text-overflow: ellipsis;   /* 넘치는 부분 "..."으로 표시 */
+}
+
+.fixed-height-row {
+  height: 49px;
+}
+
+.noWidth {
+	width: 62px;
+}
+.albumtWidth {
+	width: 60px;
+}
+.infoWidth {
+  width: 288px;
+}
+.albuminfotWidth {
+  width: 150px;
+}
+.likeCntWidth {
+  width: 111px;
+}
+.genreWidth {
+  width: 142px;
+}

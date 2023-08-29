@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MusicHeart">
+  <!-- 좋아요 추가 -->
+  <insert id="heart_save" parameterType="musicHeart">
+  <selectKey keyProperty="likeSeq" resultType="string" order="BEFORE">
+         SELECT LIKE_SEQ.NEXTVAL FROM DUAL
+  </selectKey>
+  INSERT INTO MUSIC_LIKE_CNT
+  VALUES(#{likeSeq}, #{musicId}, #{userId})
+  </insert>
+  
+  <update id="heart_up" parameterType="musicHeart">
+    UPDATE music SET LIKE_CNT = NVL(LIKE_CNT,0) +1
+    WHERE music_id = #{musicId}
+  </update>
+  <!-- 좋아요 삭제 -->
+  <delete id="heart_remove" parameterType="musicHeart">
+    DELETE FROM MUSIC_LIKE_CNT
+    WHERE music_id = #{musicId} AND user_id = #{userId}
+  </delete>
+  <update id="heart_down" parameterType="musicHeart">
+    UPDATE music SET LIKE_CNT = LIKE_CNT -1
+    WHERE music_id = #{musicId}
+  </update>
+  <select id="heart_cnt" parameterType="musicHeart" resultType="int">
+    SELECT like_cnt
+    FROM music
+    WHERE music_id = #{musicId}
+  </select>
+  
+  <!-- 좋아요 여부 검색 1일때 좋아요 취소 0일때 좋아요 버튼 -->
+  <select id="findLike" resultType="int">
+    select count(*) from MUSIC_LIKE_CNT where music_id = #{musicId} and user_id = #{userId}
+  </select>
+  
+</mapper>

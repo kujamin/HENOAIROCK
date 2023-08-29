@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <link rel="stylesheet" type="text/css" href="/resources/css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+</head>
+<body>
+	
+	<!-- 배경 삽입 
+	<video id="background-video" autoplay loop muted>
+   		<source src="/resources/video/login.mp4" type="video/mp4">
+	</video> -->
+	
+	<!-- 로그인 시작 -->
+    <div class="container">
+    
+         <div class="top_link">
+        	<a href="/">
+        		<img src="https://drive.google.com/u/0/uc?id=16U__U5dJdaTfNGobB_OpwAJ73vM50rPV&export=download" alt="">RETURN
+        	</a>
+        </div>
+    
+		<!-- 관리자 로그인 -->
+		<div class="background-link">
+	        <a href="/admin/login"><span>?</span></a>
+	    </div>
+		<!-- //관리자 로그인// -->
+		
+        <h1>HENOAIROCK</h1>
+        <form>
+    		<label for="Email">Email:</label>
+    		<input type="text" id="Email" name="Email" required>
+            
+    	<div class="form-group">
+        	<label for="login_password">Password</label>
+        		<div class="password-container">
+            		<input type="password" name="password" class="form-control" id="password" required />
+            		<i class="fa fa-eye-slash" id="eye_icon_login"></i>
+        		</div>
+    	</div>
+            
+			<button type="submit">Login</button>
+		</form>
+        
+        <div class="links">
+            <span id="to_signup" class="transition-link"><a href="EX_CREATE.html">Create an account?</a></span>
+            <span id="to_passup" class="forgot-password"><a href="EX_PASSWORD.html">Forgot password</a></span>
+        </div>     
+        
+    </div>
+    <!-- 로그인부분 끝 -->
+
+<script>
+document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const Email = document.getElementById('Email').value;
+    const password = document.getElementById('login_password').value;
+    
+
+});
+
+var eye_icon_login = document.getElementById('eye_icon_login');
+var login_password = document.getElementById("password");
+
+eye_icon_login.addEventListener('click', () => {
+    hideAndShowPass(eye_icon_login, login_password);
+});
+
+const hideAndShowPass = (eye_icon, password) => {
+    if (eye_icon.classList.contains("fa-eye-slash")) {
+        eye_icon.classList.remove('fa-eye-slash');
+        eye_icon.classList.add('fa-eye');
+        password.setAttribute('type', 'text');
+    } else {
+        eye_icon.classList.remove('fa-eye');
+        eye_icon.classList.add('fa-eye-slash');
+        password.setAttribute('type', 'password');
+    }
+};
+
+
+
+//비밀번호 페이지 이동 및 페이지 넘김 효과 적용
+document.getElementById('to_passup').addEventListener('click', function(event) {
+    event.preventDefault();
+    const container = document.querySelector('.container');
+    container.classList.add('flip-page');
+    setTimeout(() => {
+        window.location.href = event.target.href;
+        container.classList.remove('flip-page'); // 페이지 돌아올 때 효과 제거
+    }, 500);
+});
+
+
+//회원가입 페이지 이동 및 페이지 넘김 효과 적용
+document.getElementById('to_signup').addEventListener('click', function(event) {
+    event.preventDefault();
+    const container = document.querySelector('.container');
+    container.classList.add('flip-page');
+    setTimeout(() => {
+        window.location.href = event.target.href;
+        container.classList.remove('flip-page'); // 페이지 돌아올 때 효과 제거
+    }, 500);
+});
+
+</script>
+</body>
+</html>

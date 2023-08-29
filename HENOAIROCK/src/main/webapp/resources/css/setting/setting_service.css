@@ -1,0 +1,74 @@
+/* Body styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: black; /* Set background color to black */
+  color: white; /* Set text color to white */
+}
+
+/* Header styles */
+h1 {
+  color: #ddd; /* Light gray color for headers */
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+/* Section heading styles */
+h2 {
+  color: #ccc; /* Slightly lighter gray for section headings */
+  margin-top: 20px;
+  font-size: 22px;
+}
+
+/* Strong tag styles */
+strong {
+  color: #ccc;
+}
+
+/* Paragraph styles */
+p {
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* Unordered list styles */
+ul {
+  color: #bbb; /* Even lighter gray for lists */
+  margin-left: 20px;
+}
+
+/* List item styles */
+li {
+  list-style-type: disc;
+}
+
+/* Links styles */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+/* Links on hover styles */
+a:hover {
+  text-decoration: underline;
+}
+
+/* Container for the content */
+#content {
+  background-color: #222; /* Dark gray for content container */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Stronger box shadow */
+}
+
+/* Date style */
+#content p:first-child {
+  font-size: 14px;
+  color: #aaa; /* Light gray for date */
+}
+
+/* Add some spacing between paragraphs and list items */
+p + ul {
+  margin-top: 10px;
+}

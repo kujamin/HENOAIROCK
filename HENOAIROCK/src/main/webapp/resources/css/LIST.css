@@ -1,0 +1,330 @@
+body {
+  font-family: 'Cafe24SsurroundAir';
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.body2 {
+  font-family: 'Cafe24SsurroundAir';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.btn-primary {
+    padding: 5px 20px;
+    background-color: #2a2c33; /* New primary color */
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+   }
+
+
+
+/* Reset some default styling */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* text-align: left; */
+}
+
+h1 {
+	text-align: left;
+}
+
+/* Set a background color for the body */
+body {
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+}
+
+
+.additional-content {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.additional-content .fs {
+    display: flex;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+
+.horizen_mmimg {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+
+/* html size */
+#musicList {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* edit */
+.btn-edit {
+    background-color: #c0c0c0;
+}
+
+.btn-edit:hover {
+    background-color: #808080;
+}
+
+
+
+/* Meta Info Section */
+.meta_info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.meta_info_text h1 {
+    font-size: 28px;
+    margin: 0;
+    color: #b0abab;
+    text-align: left; /* Add this line to align the text to the left */
+}
+
+.meta_info_text p {
+    font-size: 16px;
+    color: #888;
+    padding: 4px;
+}
+
+.meta_info_img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 20px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.meta_info_content {
+    flex: 1;
+}
+
+.meta_info_text {
+  flex: 1;
+}
+
+.meta_info_title {
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+}
+
+ .narrow-column {
+    width: 80px; /* Adjust the width as needed */
+  }
+
+
+.tag_list .text96 {
+    margin-right: 5px;
+    padding: 2px 6px;
+    background-color: #eee;
+    border-radius: 3px;
+    color: #333;
+    font-size: 12px;
+}
+
+/* NickName */
+.user-nickName {
+    width: calc(97% - 7px);
+    height: 67px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    background-color: #ddd;
+    padding: 15px;
+    border-radius: 25px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    z-index: 1;
+}
+
+.user-nickName::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: #ddd;
+    z-index: -1;
+}
+
+
+/* Table Styling */
+.list-wrap {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.list-wrap th,
+.list-wrap td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.list-wrap th {
+    background-color: #f7f7f7;
+    font-weight: bold;
+}
+
+/* Style the table rows */
+.list {
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.list:hover {
+    background-color: #f9f9f9;
+}
+
+/* Style the album cover images */
+.cover img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Button Container */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.btn-basic {
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 5px;
+}
+
+.btn-basic:hover {
+    background-color: #808080; /* 호버 시 살짝 더 밝은 배경색으로 변경 */
+}
+
+.btn-basic:last-child {
+    margin-right: 0; 
+}
+
+.btn-reset {
+    background-color: #808080; /* 배경색을 #808080으로 변경 */
+    color: white; /* 텍스트 색상을 흰색으로 변경 */
+}
+
+.btn-reset:hover {
+    background-color: #d32f2f;
+}
+
+.btn-basic:hover {
+    background-color: #f0f0f0;
+}
+
+
+
+/* Style the more button */
+.btn-more {
+    background-color: transparent;
+    color: #333;
+    border: none;
+}
+
+.btn-more:hover {
+    text-decoration: underline;
+}
+
+/* Style the checkbox */
+.select-check {
+    cursor: pointer;
+}
+
+
+/* Style the song title and artist */
+.title {
+    color: black;
+    font-weight: bold;
+}
+
+.titleMod {
+    margin-left: auto; /* Pushes the button to the right by taking up available space */
+    background-color: #4caf50; /* Change the background color */
+    color: white; /* Change the text color */
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.titleMod:hover {
+    background-color: #4caf50; /* Darker color on hover */
+}
+
+.artist {
+    color: #555;
+}
+
+/* Style the album title */
+.albumtitle {
+    color: #999;
+}
+
+/* Style the link buttons */
+.btn-info,
+.btn-listen,
+.btn-add,
+.btn-album,
+.btn-down,
+.btn-del
+.btn-delList
+.btn-mv,
+.item {
+    color: #000000;
+    text-decoration: none;
+}
+
+.btn-info:hover,
+.btn-listen:hover,
+.btn-add:hover,
+.btn-album:hover,
+.btn-down:hover,
+.btn-mv:hover,
+.item:hover {
+    text-decoration: underline;
+}

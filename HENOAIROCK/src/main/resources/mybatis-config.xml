@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	<typeAliases>
+		<typeAlias type="com.heno.airock.dto.MemberDTO"
+			alias="member" />
+    <typeAlias type="com.heno.airock.dto.PostVO"
+      alias="post" />
+    <typeAlias type="com.heno.airock.dto.MusicVO"
+      alias="music" />
+      <typeAlias type="com.heno.airock.dto.CodeVO"
+     alias="code"/>
+     <typeAlias type="com.heno.airock.dto.MyPlayListVO"
+    alias="MyPlayList"/>
+     <typeAlias type="com.heno.airock.dto.CommentVO"
+     alias="comment"/>
+     <typeAlias type="com.heno.airock.dto.MusicHeartDTO"
+     alias="musicHeart"/>
+     <typeAlias type="com.heno.airock.dto.ChatMessageVO" 
+     alias="chat"/>
+     <typeAlias type="com.heno.airock.dto.ChatMessageDetailVO" 
+     alias="chatDetail"/>
+     <typeAlias type="com.heno.airock.dto.ChatRespondVO"
+     alias="chatRes"/>
+	</typeAliases>
+	
+</configuration>

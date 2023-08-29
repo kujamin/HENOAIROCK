@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>회원가입 Page</title>
+    <link rel="stylesheet" type="text/css" href="/resources/css/register.css">
+</head>
+<body>
+    <div class="container">
+    <form action="/member/register" method="post" id="register-form">
+        <h1>REGISTER</h1>
+        
+            <label for="Email">Email
+            	<input type="button" value="중복확인" class="btnRe" onclick = "fn_idChk();" >
+            </label>
+            	<input type="text" id="userId" name="userId" required>
+            
+            
+            <label for="cemail">Confirm Email
+				<input type="button" value="인증번호 전송 " class="btnRe" id="mail-Check-Btn">
+            	<input type="button" value="인증번호 확인 " class="btnRe" id="mail-Confirm-Btn">
+			</label>
+            <input placeholder="인증번호는 6자리 입니다." type="text" name="checkInput" id="checkInput" maxlength="6" required>
+            
+            <label for="password">Password</label>
+            <input placeholder="비밀번호는 8이상 12자 이하로 설정바랍니다." type="password" name="password" id="password" required />
+			<span class="error-message" id="password_error"></span>
+
+            <label for="cpass">Confirm Password</label>
+            <input type="password" id="confirm_password" name="confirm_password" required oninput="validateForm()" />
+            <span class="error-message" id="confirm_password_error"></span>
+
+    
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" required />
+            
+            
+            <label for="birth">birth</label>
+            <input type="date" name="birth" id="birth" required />
+            
+            
+            <label for="agree">Are you agree?
+    			<span><a href="/setting/setting_agree" style="font-size: 12px;">[이용약관 자세히 읽기]</a></span>
+			</label>
+			
+			<div class="input-check">
+			    <div>
+			        <input checked="checked" type="radio" name="agree" value="Y" id="m_y" required>
+			        <label for="m_y">동의</label>
+			    </div>
+			    <div>
+			        <input type="radio" name="agree" value="N" id="m_n" required>
+			        <label for="m_n">비동의</label>
+			    </div>
+			</div>
+            
+         </form>
+
+
+            <button type="submit" id="register">CREATE</button>
+
+    </div>
+<script>
+/* 비밀번호 제약사항 및 이용약관에서 비동의 눌렀을때만 회원가입 x 작동 */
+const passwordInput = document.getElementById("password");
+const confirmPasswordInput = document.getElementById("confirm_password");
+const passwordMatchMessage = document.getElementById("password-match-message");
+
+
+confirmPasswordInput.addEventListener("input", function() {
+    if (confirmPasswordInput.value === "") {
+        passwordMatchMessage.style.display = "none"; // 입력 없을 시 메시지 숨김
+    } else {
+        passwordMatchMessage.style.display = "block"; // 입력이 시작되면 메시지 보이도록
+        if (passwordInput.value === confirmPasswordInput.value) {
+            passwordMatchMessage.textContent = "비밀번호가 일치합니다.";
+            passwordMatchMessage.style.color = "blue";
+        } else {
+            passwordMatchMessage.textContent = "비밀번호가 다릅니다!";
+            passwordMatchMessage.style.color = "black";
+        }
+    }
+});;
+
+
+
+
+
+/* 이용약관 비동의 */ 
+ const nonAgreeButton = document.getElementById("m_n");
+ const submitButton = document.querySelector("button[type='submit']");
+
+ nonAgreeButton.addEventListener("click", function(event) {
+     event.preventDefault(); // Prevent the default behavior of the radio button
+     alert("회원가입 진행이 어렵습니다");
+     submitButton.disabled = true; // Disable the submit button
+ });
+ 
+ // 페이지 이동 및 페이지 넘김 효과 적용
+ document.getElementById('go_back').addEventListener('click', function() {
+     const container = document.querySelector('.container');
+     container.classList.add('flip-page');
+     setTimeout(() => {
+         history.back();
+         container.classList.remove('flip-page'); // 페이지 돌아올 때 효과 제거
+     }, 500);
+ });
+</script>
+</body>
+</html>
