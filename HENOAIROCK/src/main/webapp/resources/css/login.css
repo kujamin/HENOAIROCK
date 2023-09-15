@@ -120,20 +120,20 @@ button:hover {
 
 
 .top_link {
-    margin-top: 0; /* À§ÂÊ ¿©¹é Á¦°Å */
-    font-size: 12px; /* ±Û²Ã Å©±â ÁÙÀÌ±â */
+    margin-top: 0; /* �짠횂횎 쩔짤쨔챕 횁짝째횇 */
+    font-size: 12px; /* 짹횤짼횄 횇짤짹창 횁횢�횑짹창 */
 }
 
 .top_link a {
     display: inline-block;
-    vertical-align: middle; /* ÄÜÅÙÃ÷ ¼öÁ÷ Á¤·Ä */
+    vertical-align: middle; /* 횆횥횇횢횄첨 쩌철횁첨 횁짚쨌횆 */
 }
 
 .top_link img {
     width: 15px;
     padding-right: 7px;
     margin-top: -3px;
-    vertical-align: middle; /* ÀÌ¹ÌÁö ¼öÁ÷ Á¤·Ä */
+    vertical-align: middle; /* �횑쨔횑횁철 쩌철횁첨 횁짚쨌횆 */
 }
 
 

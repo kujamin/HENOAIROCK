@@ -10,9 +10,9 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@129.154.204.240:1521:hibdbcs" />
-		<property name="username" value="HENOAIROCK" />
-		<property name="password" value="HBI#_pcwk1234" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="C##USER1" />
+		<property name="password" value="admin" />
 
 	</bean>
 
@@ -45,7 +45,7 @@
 		<property name="host" value="smtp.naver.com" />
 		<property name="port" value="465" />
 		<property name="username" value="kjmin1124@naver.com" />
-		<property name="password" value="132428lpp." />
+		<property name="password" value="132428lpp@" />
 		<property name="defaultEncoding" value="utf-8" />
 		<property name="javaMailProperties">
 			<props>
